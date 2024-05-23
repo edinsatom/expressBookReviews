@@ -1,0 +1,52 @@
+Get all books
+=============
+curl -X GET \
+http://localhost:5000/
+
+Get book by isbn
+================
+curl -X GET \
+http://localhost:5000/isbn/1
+
+Get book by author
+==================
+curl -X GET \
+http://localhost:5000/author/Unknown
+
+and if I will need to send spaces in the author name we need to use %20
+curl -X GET \
+http://localhost:5000/author/Dante%20Alighieri
+
+Get book by title
+=================
+curl -X GET \
+http://localhost:5000/title/The%20Divine%20Comedy
+
+Get reviews for a book by isbn
+==============================
+curl -X GET \
+http://localhost:5000/review/1
+
+
+Register new user
+=================
+curl -X POST \
+-H "Content-Type: application/json" \
+-d '{"username": "edinson", "password":"arteaga"}' \
+http://localhost:5000/register
+
+
+Login exists user
+=================
+curl -X POST \
+-H "Content-Type: application/json" \
+-d '{"username": "edinson", "password":"arteaga"}' \
+-c ./cookies.txt \
+http://localhost:5000/customer/login 
+
+Adding review 
+curl -X PUT \
+-H "Content-Type: application/json" \
+-d '{"review": "This is a great book"}'
+-b ./cookies.txt \
+http://localhost:5000/customer/auth/review/1
