@@ -59,9 +59,12 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
           return res.status(404).json({message: "Bad request!"})
         }
       }
+      else {
+        return res.status(300).json({ message: "You must be loged to use this service" });
+      }
     })
   }
-  return res.status(300).json({ message: "You must be loged to use this service" });
+
 });
 
 regd_users.delete("/auth/review/:isbn", (req, res) => {
@@ -75,9 +78,12 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
         delete books[isbn].reviews[username]
         return res.status(200).json({message: "This review has been deleted"})
       }
+      else {
+        return res.status(300).json({ message: "You must be loged to use this service" });
+      }
     })
   }
-  return res.status(300).json({ message: "You must be loged to use this service" });
+
 })
 
 module.exports.authenticated = regd_users;
